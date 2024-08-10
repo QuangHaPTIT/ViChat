@@ -1,0 +1,57 @@
+server:
+  port: 5454
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    url: ${DBMS_CONNECTION:jdbc:mysql://localhost:3306/vichat?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true}
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: root
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  flyway:
+    locations: classpath:/db/migration,classpath:/dev/db/migration
+    #Phiên bản base line sẽ = 1 và không thực hiện bất kì thay đổi nào trong db
+    baseline-on-migrate: true
+    baseline-version: 0
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: vichatvn@gmail.com
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+
+
+jwt:
+  signerKey: ${SIGNER_KEY}
+  valid-duration: 3600 # in second
+  refreshable-duration: 86400 # in seconds
+
+ outbound:
+   vichat:
+     client-id: ${CLIENT_ID}
+     client-secret: ${CLIENT_SECRET}
+     redirect-uri: "http://localhost:3000/authenticate"
+
+management:
+  endpoint:
+    health:
+      show-details: always
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+
+
+

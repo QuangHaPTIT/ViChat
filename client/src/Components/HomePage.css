@@ -1,0 +1,11 @@
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+}
+.input-custom-placeholder::placeholder {
+    font-size: 1.2rem; /* 12px */
+    /* Bạn có thể thêm các thuộc tính khác nếu cần */
+  }
